@@ -1,0 +1,66 @@
+///Move_State
+
+var right =keyboard_check(vk_right);
+var left = keyboard_check(vk_left);
+var up = keyboard_check(vk_up);
+var down = keyboard_check(vk_down);
+
+// Gravity :O
+
+if (!place_meeting(x, y+1,Solid)) {
+    vspd += grav;
+    
+    //player is in air
+    sprite_index = spr_player_ledge;
+    image_speed = 0;
+    image_index =( vspd > 0);
+} 
+
+else {
+
+    vspd=0;
+    ///jumping code! :D
+if (up) {
+    vspd=-10;
+    
+}
+
+//player is on the ground
+
+    if (hspd ==0) {
+        sprite_index = spr_player_idle;
+        }
+    else {
+    sprite_index = spr_player_walking;
+    image_speed= .6;
+    }
+}
+
+
+if (right) {
+
+    hspd=spd;
+    
+    }
+
+if (left) {
+
+    hspd= -spd;
+    
+    }
+
+
+
+/// Friction 
+
+if (!right && !left){
+    hspd=0;
+    
+}
+
+///Move
+
+scr_move (Solid);
+
+
+
